@@ -1,9 +1,11 @@
-//your JS code here. If required.
+// your JS code here
 const inputs = document.querySelectorAll('.code');
+
 inputs.forEach((input, index) => {
   input.addEventListener('input', (e) => {
     const currentInput = e.target;
     const nextInput = inputs[index + 1];
+
     if (currentInput.value && nextInput) {
       nextInput.focus();
     }
@@ -14,10 +16,15 @@ inputs.forEach((input, index) => {
     const prevInput = inputs[index - 1];
 
     if (e.key === 'Backspace') {
-      if (!currentInput.value && prevInput) {
+      if (currentInput.value === '' && prevInput) {
         prevInput.focus();
-        prevInput.value = '';
+      } else {
+        currentInput.value = '';
       }
     }
+  });
+
+  input.addEventListener('focus', (e) => {
+    e.target.value = '';
   });
 });
